@@ -8,22 +8,31 @@ public class GoingUp extends StateBase implements Moving {
 
 	public GoingUp() {
 		super("goingup", initMap());
-		StateBase.destinationFloor++;
-		StateBase.incrementFloor();
 	}
 
 	public GoingUp(int destFloor) {
 		super("goingup", initMap());
-		StateBase.destinationFloor  = destFloor;
-		StateBase.incrementFloor();
 	}
 
 	public static Map<String, StateBase> initMap() {
 		if (inputMap == null) {
 			inputMap = new HashMap<String, StateBase>();
-			inputMap.put("", new GoingUp());
-			inputMap.put("up", new GoingUp());
+			inputMap.put("", stillGoing());
+			inputMap.put("up", up());
 		}
 		return inputMap;
+	}
+
+	private static StateBase stillGoing() {
+		if (StateBase.currentFloor != StateBase.destinationFloor) {
+			return new GoingUp();
+		} else {
+			return new WaitingClosed();
+		}
+	}
+
+	private static StateBase up() {
+		StateBase.incrementFloor();
+		return new GoingUp();
 	}
 }

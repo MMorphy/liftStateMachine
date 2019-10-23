@@ -17,6 +17,8 @@ public class WaitingClosed extends StateBase {
 			inputMap.put("", new WaitingClosed());
 			inputMap.put("close", new WaitingClosed());
 			inputMap.put("open", new WaitingOpen());
+			inputMap.put("up", new GoingUp(StateBase.destinationFloor+1));
+			inputMap.put("down", new GoingDown().getInputToNextState().get("down"));
 		}
 		return inputMap;
 	}

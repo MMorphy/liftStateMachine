@@ -12,6 +12,8 @@ public class App {
 		String currentInput;
 		while (true) {
 			System.out.println("Current state: " + StateBase.currentState.getStateName());
+			System.out.println("Current floor: " + StateBase.currentFloor);
+			System.out.println("Current destination: " + StateBase.destinationFloor);
 			System.out.print("Input: ");
 			currentInput = input.nextLine();
 			StateBase.handleInput(currentInput);
